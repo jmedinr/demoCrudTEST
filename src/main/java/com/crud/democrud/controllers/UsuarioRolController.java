@@ -21,7 +21,7 @@ public class UsuarioRolController {
     }
 
     @PostMapping()
-    public UsuarioRol guardarUsuario(@RequestBody UsuarioRol rol) {
+    public UsuarioRol guardarRol(@RequestBody UsuarioRol rol) {
         return this.usuarioRolService.guardarRol(rol);
     }
 
@@ -30,9 +30,23 @@ public class UsuarioRolController {
         return this.usuarioRolService.obtenerPorId(id);
     }
 
-    @GetMapping("/query")
+    @GetMapping("/query-rol")
     public ArrayList<UsuarioRol> obtenerUsuarioPorPrioridad(@RequestParam("rol") String rol) {
         return this.usuarioRolService.obtenerPorRol(rol);
+    }
+
+    @PutMapping("/cambiarlo/{id}")
+    UsuarioRol replaceRol(@RequestBody UsuarioRol newRol, @PathVariable Long id) {
+
+        return usuarioRolService.obtenerPorId(id)
+                .map(usuario -> {
+                    usuario.setRol(newRol.getRol());
+                    return guardarRol(usuario);
+                })
+                .orElseGet(() -> {
+                    newRol.setIdRol(id);
+                    return guardarRol(newRol);
+                });
     }
 
     @DeleteMapping(path = "/{id}")

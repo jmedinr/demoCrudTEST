@@ -1,6 +1,7 @@
 package com.crud.democrud.controllers;
 
 import com.crud.democrud.models.UsuarioModel;
+import com.crud.democrud.models.UsuarioRol;
 import com.crud.democrud.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +31,25 @@ public class UsuarioController {
         return this.usuarioService.obtenerPorId(id);
     }
 
-    @GetMapping("/query")
+    @GetMapping("/query-usuarios")
     public ArrayList<UsuarioModel> obtenerUsuarioPorPrioridad(@RequestParam("prioridad") Integer prioridad) {
         return this.usuarioService.obtenerPorPrioridad(prioridad);
+    }
+
+    @PutMapping("/cambiaUsuario/{id}")
+    UsuarioModel replaceUsuario(@RequestBody UsuarioModel newUsuario, @PathVariable Long id) {
+
+        return usuarioService.obtenerPorId(id)
+                .map(usuario -> {
+                    usuario.setNombre(newUsuario.getNombre());
+                    usuario.setEmail(newUsuario.getEmail());
+                    usuario.setPrioridad(newUsuario.getPrioridad());
+                    return guardarUsuario(usuario);
+                })
+                .orElseGet(() -> {
+                    newUsuario.setId(id);
+                    return guardarUsuario(newUsuario);
+                });
     }
 
     @DeleteMapping(path = "/{id}")
