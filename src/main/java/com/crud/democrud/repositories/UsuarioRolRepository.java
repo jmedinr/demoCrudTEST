@@ -9,5 +9,5 @@ import java.util.ArrayList;
 
 @Repository
 public interface UsuarioRolRepository extends CrudRepository<UsuarioRol, Long> {
-    ArrayList<UsuarioModel> findByRol(String rol);
+    ArrayList<UsuarioRol> findByRol(String rol);
 }
