@@ -3,7 +3,7 @@ package com.crud.democrud.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuarios")
 public class UsuarioModel {
 
     @Id
