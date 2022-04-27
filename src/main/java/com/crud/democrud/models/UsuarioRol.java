@@ -36,5 +36,5 @@ public class UsuarioRol {
         this.rol = rol;
     }
 
-    
+
 }
