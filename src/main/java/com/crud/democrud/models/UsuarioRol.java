@@ -12,12 +12,17 @@ public class UsuarioRol {
     private Long idRol;
     private String rol;
 
+    @JoinColumn(name = "usuarios_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    private UsuarioModel usuarios;
+
     public UsuarioRol() {
     }
 
-    public UsuarioRol(Long idRol, String rol) {
+    public UsuarioRol(Long idRol, String rol, UsuarioModel usuarios) {
         this.idRol = idRol;
         this.rol = rol;
+        this.usuarios = usuarios;
     }
 
     public Long getIdRol() {
@@ -36,5 +41,11 @@ public class UsuarioRol {
         this.rol = rol;
     }
 
+    public UsuarioModel getUsuarios() {
+        return usuarios;
+    }
 
+    public void setUsuarios(UsuarioModel usuarios) {
+        this.usuarios = usuarios;
+    }
 }

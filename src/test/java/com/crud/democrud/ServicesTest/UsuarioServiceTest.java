@@ -1,8 +1,8 @@
 package com.crud.democrud.ServicesTest;
 
 import com.crud.democrud.models.UsuarioModel;
+import com.crud.democrud.models.UsuarioRol;
 import com.crud.democrud.repositories.UsuarioRepository;
-import com.crud.democrud.services.UsuarioService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -22,7 +22,7 @@ public class UsuarioServiceTest {
 
     @Test
     public void testGuardarUsuario(){
-        UsuarioModel usuarioModel=new UsuarioModel("aquaman","aqua@gmail.com",99);
+        UsuarioModel usuarioModel=new UsuarioModel("aquaman","aqua@gmail.com",99, new UsuarioRol());
         UsuarioModel usuarioModelRegistrado = usuarioRepository.save(usuarioModel);
         assertNotNull(usuarioModelRegistrado);
     }
