@@ -28,7 +28,7 @@ public class UsuarioRolService {
         return usuarioRolRepository.findByRol(rol);
     }
 
-    public boolean eliminarUsuario(Long id) {
+    public boolean eliminarRol(Long id) {
         try{
             usuarioRolRepository.deleteById(id);
             return true;
