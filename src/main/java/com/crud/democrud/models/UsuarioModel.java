@@ -1,6 +1,7 @@
 package com.crud.democrud.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -14,18 +15,19 @@ public class UsuarioModel {
     private String email;
     private Integer prioridad;
 
-    @OneToOne(mappedBy = "usuarios", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private UsuarioRol usuarioRol;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "usuarios_id")
+    private List<UsuarioRol> listRol;
 
     public UsuarioModel() {
 
     }
 
-    public UsuarioModel(String nombre, String email, Integer prioridad, UsuarioRol usuarioRol) {
+    public UsuarioModel(String nombre, String email, Integer prioridad, List<UsuarioRol> listRol) {
         this.nombre = nombre;
         this.email = email;
         this.prioridad = prioridad;
-        this.usuarioRol = usuarioRol;
+        this.listRol = listRol;
     }
 
     public void setPrioridad(Integer prioridad) {
@@ -60,11 +62,4 @@ public class UsuarioModel {
         this.email = email;
     }
 
-    public UsuarioRol getUsuarioRol() {
-        return usuarioRol;
-    }
-
-    public void setUsuarioRol(UsuarioRol usuarioRol) {
-        this.usuarioRol = usuarioRol;
-    }
 }
