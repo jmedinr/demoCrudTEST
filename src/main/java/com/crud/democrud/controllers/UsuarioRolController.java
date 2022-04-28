@@ -49,7 +49,7 @@ public class UsuarioRolController {
                 });
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "eliminar-roles/{id}")
     public String eliminarPorId(@PathVariable("id") Long id) {
         boolean ok = this.usuarioRolService.eliminarRol(id);
         if (ok) {

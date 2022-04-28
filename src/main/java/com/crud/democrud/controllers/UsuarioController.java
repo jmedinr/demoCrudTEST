@@ -50,7 +50,7 @@ public class UsuarioController {
                 });
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "eliminar-usuarios/{id}")
     public String eliminarPorId(@PathVariable("id") Long id) {
         boolean ok = this.usuarioService.eliminarUsuario(id);
         if (ok) {
